@@ -44,6 +44,30 @@
 
 phonebook = 'file.txt'
 
+def main():
+    while True:
+        print('Главное меню\n'
+              '1 - Показать все контакты\n'
+              '2 - Добавить контакт в справочник\n'
+              '3 - Найти контакт в справочнике\n'
+              '4 - Изменить контакт\n'
+              '5 - Удалить контакт\n'
+              '6 - Выйти\nВыберите пункт меню: ')
+        mode = input()
+        if mode == '1':
+            phonebookRead()
+        elif mode == '2':
+            contactAdd()
+        elif mode == '3':
+            contactSearch()
+        elif mode == '4':
+            changeContact()
+        elif mode == '5':
+            deleteContact()
+        elif mode == '6':
+            print('До свидания!')
+            break
+
 def phonebookRead():
     with open(phonebook, encoding='UTF-8') as file:
         print(file.read())
@@ -56,14 +80,14 @@ def contactAdd():
 
 def contactSearch():
     with open(phonebook, encoding='UTF-8') as file:
-        search = input('Введите ФИ или телефон для поиска ')
+        search = input('Введите фамилию или телефон для поиска: ')
         fileSearch = file.read().split('\n')
         searchedContactsIndex = list()
         flag = True
         for i in fileSearch:
             if search.lower() in i.lower():
                 searchedContactsIndex.append(fileSearch.index(i))
-                print(f'{fileSearch.index(i+1)} {i}')
+                print(f'{fileSearch.index(i)} {i}')
                 flag = False
         if flag:
             print('Контакт не найден!')
@@ -116,33 +140,11 @@ def rewritePhonebook(contacts: list):
     with open(phonebook, 'w', encoding='UTF-8') as file:
         file.write(contactsTxt)
 
-def main():
-    while True:
-        print('Главное меню\n'
-              '1 - Добавить контакт в справочник\n'
-              '2 - Показать все контакты\n'
-              '3 - Найти контакт в справочнике\n'
-              '4 - Изменить контакт\n'
-              '5 - Удалить контакт\n'
-              '6 - Выйти\n'
-              'Выберите пункт меню: ')
-        mode = input()
-        if mode == '1':
-            contactAdd()
-        elif mode == '2':
-            phonebookRead()
-        elif mode == '3':
-            contactSearch()
-        elif mode == '4':
-            changeContact()
-        elif mode == '5':
-            deleteContact()
-        elif mode == '6':
-            print('До свидания!')
-            break
+main()
 
-if __name__ == '__main__': 
-    main()
+
+# if __name__ == '__main__': 
+
 
 
 
