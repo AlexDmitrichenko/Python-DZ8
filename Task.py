@@ -1,47 +1,3 @@
-# phonebook = []
-# path = 'phone.txt'
-
-# def menu():
-#     while True:
-#         userChoice = input('''Главное меню\n1. Открыть файл\n2. Сохранить файл\n3. Добавить контакт
-# 4. Показать все контакты\n5. Изменить контакт\n6. Выйти\nВыберите пункт меню: ''')
-#         print()
-#         if userChoice == '1':
-#             openFile()
-#         # elif userChoice == '2':
-#         #     addPhoneNumber(phonebook)
-#         # elif userChoice == '3':
-#         #     changePhoneNumber(phonebook)
-#         elif userChoice == '4':
-#             showPhonebook()
-#         # elif userChoice == '5':
-#         #     showPhonebook(phonebook)
-#         # elif userChoice == '6':
-#         #     print('До свидания!')
-#         #     break
-#         else:
-#             print('Выбрана неверная команда!')
-#             print()
-#             continue
-
-# def openFile():
-#     with open(path, 'r', encoding="UTF-8") as file:
-#         data = file.readline()
-#     for row in data:
-#         contact = row.strip().strip(';')
-#     #     contact = {'name': contact[0], 'phone': contact[1],'comment': contact[2]}
-#         phonebook.append(contact)
-
-# def showPhonebook(phonebook: list):
-#     if not phonebook:
-#         print('Телефонный справочник пуст')
-#         return False
-#     for index, contact in enumerate(phonebook, 1):
-#         print(f"{index}. {contact.get('name')}:<20" 
-#             f"{contact.get('phone')}:<20"
-#             f"{contact.get('comment')}:<20")
-# menu()
-
 phonebook = 'file.txt'
 
 def main():
@@ -96,9 +52,6 @@ def contactSearch():
 def findСontact():
     searchedContacts = contactSearch()
     changedIndex = searchedContacts[0]
-    if len(searchedContacts) != 1:
-        print("Укажите номер контакта из списка выше, для продолждения работы")
-        changedIndex = int(input())
     return changedIndex
 
 def changeContact():
@@ -108,7 +61,7 @@ def changeContact():
         contactAsList = fileSearch[changedIndex].split()
     while True:
         print('Введите 0 для замены фамилии, 1 - имени, 2 - телефона, 4- комментария,\n'
-              '5 - всё ок, сохранить')
+              '5 - сохранить')
         mode = int(input())
         if mode == 0:
             contactAsList[mode] = input('Фамилия: ')
@@ -118,7 +71,7 @@ def changeContact():
             contactAsList[mode] = input('Телефон: ')
         elif mode == 4:
             contactAsList[mode] = input('Комментарий: ')
-        # elif mode == 5:
+        elif mode == 5:
             break
     fileSearch[changedIndex] = ''
     for i in contactAsList:
@@ -143,7 +96,7 @@ def rewritePhonebook(contacts: list):
 main()
 
 
-# if __name__ == '__main__': 
+
 
 
 
