@@ -56,14 +56,14 @@ def contactAdd():
 
 def contactSearch():
     with open(phonebook, encoding='UTF-8') as file:
-        search = input('Введите ФИО или телефон для поиска ')
+        search = input('Введите ФИ или телефон для поиска ')
         fileSearch = file.read().split('\n')
         searchedContactsIndex = list()
         flag = True
         for i in fileSearch:
             if search.lower() in i.lower():
                 searchedContactsIndex.append(fileSearch.index(i))
-                print(f'{fileSearch.index(i)} {i}')
+                print(f'{fileSearch.index(i+1)} {i}')
                 flag = False
         if flag:
             print('Контакт не найден!')
@@ -83,7 +83,7 @@ def changeContact():
         fileSearch = file.read().split('\n')
         contactAsList = fileSearch[changedIndex].split()
     while True:
-        print('Введите 0 для замены фамилии, 1 - имени, 2 - отчества,4- тел,\n'
+        print('Введите 0 для замены фамилии, 1 - имени, 2 - телефона, 4- комментария,\n'
               '5 - всё ок, сохранить')
         mode = int(input())
         if mode == 0:
@@ -91,10 +91,10 @@ def changeContact():
         elif mode == 1:
             contactAsList[mode] = input('Имя: ')
         elif mode == 2:
-            contactAsList[mode] = input('Отчество: ')
+            contactAsList[mode] = input('Телефон: ')
         elif mode == 4:
-            contactAsList[mode] = input('Тел: ')
-        elif mode == 5:
+            contactAsList[mode] = input('Комментарий: ')
+        # elif mode == 5:
             break
     fileSearch[changedIndex] = ''
     for i in contactAsList:
